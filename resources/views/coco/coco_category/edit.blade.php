@@ -1,0 +1,1 @@
+@include('coco.coco_article.layouts.viewpage')
