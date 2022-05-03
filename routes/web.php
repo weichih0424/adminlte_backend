@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\coco\CocoArticleController;
 use App\Http\Controllers\shared\UploadFileController;
-use App\Http\Controllers\coco\CocoCategoryController;
+use App\Http\Controllers\coco\CocoNavController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,7 +49,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     //咕咕雞商場
     Route::prefix('coco')->group(function () {
         Route::resource('/coco_article', CocoArticleController::class);
-        Route::resource('/coco_category', CocoCategoryController::class);
+        Route::resource('/coco_nav', CocoNavController::class);
     });
 });
 

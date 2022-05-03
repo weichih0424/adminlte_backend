@@ -29,8 +29,9 @@ class CocoArticleController extends Controller
         ],
         [
             'title' => '文章內容',
-            'type' => 'text',
+            'type' => 'textarea',   ##summernote
             'name' => 'intro',
+            'id' => 'intro',
             'placeholder' => '請輸入文章內容',
             'required' => TRUE
         ],

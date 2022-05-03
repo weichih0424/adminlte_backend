@@ -39,7 +39,8 @@
                             @endif
                         @break
                         @case('textarea')
-                            {!! Form::textarea($value['name'], isset($data) ? $data[$value['name']] : old($value['name']), ['placeholder' => isset($value['placeholder'])?$value['placeholder']:$value['name'], 'class' => isset($value['class'])?'form-control '.$value['class']:'form-control' , 'id' => isset($value['id'])?$value['id']:'','rows' => isset($value['row'])?$value['row']:'10', 'cols' => isset($value['col'])?$value['col']:'30', ((isset($value['required']) && $value['required'] == 1)) ? 'required' : '']) !!}
+                            {!! Form::textarea($value['name'], isset($data) ? $data[$value['name']] : old($value['name']), 
+                            ['placeholder' => isset($value['placeholder'])?$value['placeholder']:$value['name'], 'class' => isset($value['class'])?'form-control '.$value['class']:'form-control' , 'id' => isset($value['id'])?$value['id']:'','rows' => isset($value['row'])?$value['row']:'10', 'cols' => isset($value['col'])?$value['col']:'30', ((isset($value['required']) && $value['required'] == 1)) ? 'required' : '']) !!}
                         @break
                         @case('fileupload')
                             {!! Form::input('hidden', 'img_src', url('/'), ['id' => 'img_src']) !!}

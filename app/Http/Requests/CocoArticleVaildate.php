@@ -25,7 +25,7 @@ class CocoArticleVaildate extends FormRequest
     {
         return [
             'name' => 'required|min:1|max:50',
-            'intro' => 'required|min:1|max:40',
+            // 'intro' => 'required|min:1|max:40',
             'url' => 'required|url|active_url',
             'image' => function ($attribute, $value, $fail) {
                 if($value=='[]' || $value==''){
@@ -43,7 +43,7 @@ class CocoArticleVaildate extends FormRequest
     {
         return [
             'name' => '節目名稱',
-            'intro' => '節目簡介',
+            'intro' => '文章內容',
             'url' => '網址',
             'fb_url' => 'FB連結',
             'yt_url' => 'YT連結',

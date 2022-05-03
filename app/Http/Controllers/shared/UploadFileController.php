@@ -44,7 +44,7 @@ class UploadFileController extends Controller
                         $width = (int)$data[0];
                         $height = (int)$data[1];
                         $img_info = getimagesize($_FILES["file_data"]["tmp_name"]);
-
+                        
                         if ((int)$img_info[0] !== $width && (int)$img_info[1] !== $height) {
                             $error = array(
                                 "error" => '圖片尺寸不正確，需為('.$width.'x'.$height.')',

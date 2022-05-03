@@ -309,9 +309,9 @@ return [
                     'icon'  => 'fas fa-users-cog',
                 ],
                 [
-                    'text' => '分類管理',
-                    'role_name' => 'coco_category',
-                    'url'  => 'admin/coco/coco_category',
+                    'text' => '導覽列管理',
+                    'role_name' => 'coco_nav',
+                    'url'  => 'admin/coco/coco_nav',
                     'icon' => 'fas fa-users-cog',
                 ],
             ],

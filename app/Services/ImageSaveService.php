@@ -30,7 +30,7 @@ class ImageSaveService
                 //修改圖片
                 Storage::disk('local')->delete(str_replace('http://127.0.0.1:8000/', '', $data_image));
                 $image_path = $this->save_to_s3($image_file,$destination_path);
-                // dd("4");
+                
                 return $image_path;
             } else {
                 //未修改圖片
