@@ -14,7 +14,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    
+    {{-- select_category start --}}
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
+	<link rel="stylesheet" href="{{ URL::asset('/css/multiselect-02/style.css') }}">
+    {{-- select_category end --}}
 @stop
 @section('js')
     <script type="text/javascript" src="{{ URL::asset('/js/fileupload/fileinput.min.js') }}"></script>
@@ -29,6 +34,5 @@
         });
     });
         ajax_fileupload();
-
     </script>
 @stop

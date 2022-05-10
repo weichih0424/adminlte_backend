@@ -21,6 +21,17 @@ class CocoArticleController extends Controller
 
     public $field = [
         [
+            'title' => '分類名稱',
+            'type' => 'select_category',
+            'name' => 'select_category',
+            'option' => [
+                0 => '下架',
+                1 => '上架'
+            ],
+            // 'placeholder' => '請選擇分類',
+            // 'required' => TRUE
+        ],
+        [
             'title' => '文章名稱',
             'type' => 'text',
             'name' => 'name',
@@ -35,13 +46,13 @@ class CocoArticleController extends Controller
             'placeholder' => '請輸入文章內容',
             'required' => TRUE
         ],
-        [
-            'title' => '網址',
-            'type' => 'text',
-            'name' => 'url',
-            'placeholder' => '請輸入文章網址',
-            'required' => TRUE
-        ],
+        // [
+        //     'title' => '網址',
+        //     'type' => 'text',
+        //     'name' => 'url',
+        //     'placeholder' => '請輸入文章網址',
+        //     'required' => TRUE
+        // ],
         [
             'title' => '圖片',
             'type' => 'fileupload',

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\coco\CocoArticleController;
 use App\Http\Controllers\shared\UploadFileController;
 use App\Http\Controllers\coco\CocoNavController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,7 @@ Route::get('/', function() {
 })->name('home')->middleware('auth');
 
 Route::get('/admin', [HomeController::class, 'index'])->name('admin');
+Route::resource('/test', TestController::class);
 
 
 Route::prefix('admin')->middleware('auth')->group(function () {

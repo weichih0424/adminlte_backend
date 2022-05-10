@@ -76,6 +76,12 @@
                                 {!! Form::select($value['name'], $value['option'], isset($data) ? $data[$value['name']] : old($value['name']), ['class' => isset($value['class'])?'form-control '.$value['class']:'form-control' , 'id' => isset($value['id'])?$value['id']:'', isset($value['required']) && $value['required'] == 1 ? 'required' : '']) !!}
                             </div>
                         @break
+                        {{-- /css/multiselect-02/style.css => .ui.label 、 #2894FF --}}
+                        @case('select_category')
+                            <div class="input-group">
+                                {!! Form::select($value['name'], $value['option'], isset($data) ? $data[$value['name']] : old($value['name']), ['class' => isset($value['class'])?'label ui selection fluid dropdown'.$value['class']:'label ui selection fluid dropdown' ,'multiple' => '', 'id' => isset($value['id'])?$value['id']:'', isset($value['required']) && $value['required'] == 1 ? 'required' : '']) !!}
+                            </div>
+                        @break
                         @case('hidden')
                             {!! Form::input('hidden', $value['name'], $value['value']) !!}
                         @break
@@ -101,3 +107,14 @@
         </div>
     </div>
 </div>
+{{-- <script src="js/multiselect-02/jquery.min.js"></script>
+<script src="js/multiselect-02/popper.js"></script>
+<script src="js/multiselect-02/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+<script src="js/multiselect-02/main.js"></script> --}}
+
+<script src="{{ URL::asset('/js/multiselect-02/jquery.min.js') }}"></script>
+<script src="{{ URL::asset('/js/multiselect-02/popper.js') }}"></script>
+<script src="{{ URL::asset('/js/multiselect-02/bootstrap.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+<script src="{{ URL::asset('/js/multiselect-02/main.js') }}"></script>

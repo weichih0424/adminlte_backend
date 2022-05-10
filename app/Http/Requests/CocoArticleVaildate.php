@@ -25,8 +25,8 @@ class CocoArticleVaildate extends FormRequest
     {
         return [
             'name' => 'required|min:1|max:50',
-            // 'intro' => 'required|min:1|max:40',
-            'url' => 'required|url|active_url',
+            'intro' => 'required|min:1',
+            // 'url' => 'required|url|active_url',
             'image' => function ($attribute, $value, $fail) {
                 if($value=='[]' || $value==''){
                     return $fail('『圖片』為必填');
