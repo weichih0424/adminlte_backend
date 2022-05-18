@@ -24,6 +24,7 @@ class CocoArticleVaildate extends FormRequest
     public function rules()
     {
         return [
+            // 'select_category' => 'required',
             'name' => 'required|min:1|max:50',
             'intro' => 'required|min:1',
             // 'url' => 'required|url|active_url',
@@ -42,6 +43,7 @@ class CocoArticleVaildate extends FormRequest
     public function attributes()
     {
         return [
+            'select_category' => '分類名稱',
             'name' => '節目名稱',
             'intro' => '文章內容',
             'url' => '網址',

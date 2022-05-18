@@ -30,9 +30,22 @@
         $(document).ready(function() {
         $('#intro').summernote({
             height: 400, 
-            placeholder: '請輸入',
+            // placeholder: '請輸入',
         });
     });
         ajax_fileupload();
+
+        $('#s').change(function () {
+            var select=document.getElementById('s');
+            var str=[];
+            for (i=0;i<select.length;i++){
+                if (select.options[i].selected){
+                str.push(select[i].value);
+                }
+            }
+            console.log(str);
+            $('#select').attr("value",str);
+        })
+
     </script>
 @stop
