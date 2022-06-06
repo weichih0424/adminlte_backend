@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($new_array as $key => $data)   
+                    @foreach ($datas as $key => $data)   
                         <tr>
                             <td style="width:5%;" class="align-middle">{{ $data->id }}</td>
                             <td style="width:15%;" class="align-middle">{{ $data->name }}</td>
@@ -61,7 +61,8 @@
         </div>
     </div>
 </div>
-
+{{-- {!! $new_array->links() !!} --}}
+{!! $datas->render() !!}
 @stop
 @section('css')
 @stop

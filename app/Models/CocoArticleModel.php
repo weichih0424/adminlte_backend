@@ -15,7 +15,6 @@ class CocoArticleModel extends Model
         'select_category',
         'name',
         'intro',
-        'url',
         'image',
         'fb_url',
         'yt_url',

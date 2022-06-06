@@ -46,6 +46,5 @@
             console.log(str);
             $('#select').attr("value",str);
         })
-
     </script>
 @stop

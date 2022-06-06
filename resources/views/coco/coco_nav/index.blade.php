@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-
+{!! $datas->render() !!}
 @stop
 @section('css')
 @stop

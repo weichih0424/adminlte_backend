@@ -46,7 +46,6 @@ class CocoArticleVaildate extends FormRequest
             'select_category' => '分類名稱',
             'name' => '節目名稱',
             'intro' => '文章內容',
-            'url' => '網址',
             'fb_url' => 'FB連結',
             'yt_url' => 'YT連結',
             'line_url' => 'LINE連結',

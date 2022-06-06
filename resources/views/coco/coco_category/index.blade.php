@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-
+{!! $datas->links() !!}
 @stop
 @section('css')
 @stop

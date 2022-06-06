@@ -53,7 +53,7 @@ class CocoCategoryController extends Controller
      */
     public function index()
     {
-        $page_limit = 20;
+        $page_limit = 2;
         $header = '分類設定';
         $field = array('分類名稱','url','狀態');
         $datas = CocoCategoryModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);

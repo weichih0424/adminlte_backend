@@ -160,12 +160,13 @@ class CocoArticleController extends Controller
      */
     public function index()
     {
-        $page_limit = 20;
+        $page_limit = 5;
         $header = '文章設定';
         $field = array('文章名稱','文章內容','圖片','狀態');
         // $new_array = $this->category_show();
         $datas = CocoArticleModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);
-        $coco_category_datas = CocoCategoryModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->paginate($page_limit);
+        // dd($datas);
+        $coco_category_datas = CocoCategoryModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->get();
         
         $new_array = array();
         $new_array2 = array();
@@ -192,9 +193,8 @@ class CocoArticleController extends Controller
                 $new_array[$key]->new_category = $implode_category;
             }
         }
-    // dd($new_array);
-
-        return view('coco.coco_article.index', compact('header', 'field', 'new_array'));
+        // dd($datas);
+        return view('coco.coco_article.index', compact('header', 'field', 'datas'));
     }
     /**
      * Show the form for creating a new resource.
@@ -208,6 +208,7 @@ class CocoArticleController extends Controller
         $route = 'coco_article.store';
 
         $this->select_category();
+        $this->field['select_category']['name']='select_category';
         $field = $this->field;
         $root = $this->role_name;
         
@@ -262,10 +263,10 @@ class CocoArticleController extends Controller
         $field = $this->field;
         $root = $this->role_name;
         $data = CocoArticleModel::find($id);
-
         $select_categorys = $data->select_category;
         $select_category = explode(",",$select_categorys);
         $data->new_select_category = $select_category;
+        // dd($data);
 
         $data->start_at = date("Y-m-d\TH:i:s", strtotime($data->start_at));
         $data->end_at = date("Y-m-d\TH:i:s", strtotime($data->end_at));
@@ -286,6 +287,7 @@ class CocoArticleController extends Controller
         $image_path = $this->save_image->save_to_s3_for_fileUpload($this->table,$this->save_path,$request->image,$id);
         $CocoArticleModel = CocoArticleModel::find($id);
         $data = $request->all();
+        $CocoArticleModel->select_category = $data['new_select_category'];
         $data['image'] = $image_path;
         if($request->status == 1){
             if($CocoArticleModel->sort == NULL){

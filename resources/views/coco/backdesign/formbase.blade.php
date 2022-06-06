@@ -75,14 +75,14 @@
                             <div class="input-group">
                                 {!! Form::select($value['name'], $value['option'], isset($data) ? $data[$value['name']] : old($value['name']), ['class' => isset($value['class'])?'form-control '.$value['class']:'form-control' , 'id' => isset($value['id'])?$value['id']:'', isset($value['required']) && $value['required'] == 1 ? 'required' : '']) !!}
                             </div>
-                            @break
+                        @break
                             {{-- /css/multiselect-02/style.css => .ui.label 、 #2894FF --}}
-                            @case('select_category')
-                            <div class="input-group">
-                                {{-- {{ dd($data); }} --}}
-                                {!! Form::select($value['name'], $value['option'], isset($data) ? $data[$value['name']] : old($value['name']), ['class' => isset($value['class'])?'label ui selection fluid dropdown'.$value['class']:'label ui selection fluid dropdown' ,'multiple' => '', 'id' => isset($value['id'])?$value['id']:'', isset($value['required']) && $value['required'] == 1 ? 'required' : '']) !!}
-                                {!! Form::input('hidden',$value['name'], isset($data) ? $data['select_category'] : '',['id'=>'select'])!!} 
-                            </div>
+                        @case('select_category')
+                        <div class="input-group">
+                            {{-- {{ dd($data); }} --}}
+                            {!! Form::select($value['name'], $value['option'], isset($data) ? $data[$value['name']] : old($value['name']), ['class' => isset($value['class'])?'label ui selection fluid dropdown'.$value['class']:'label ui selection fluid dropdown' ,'multiple' => '', 'id' => isset($value['id'])?$value['id']:'', isset($value['required']) && $value['required'] == 1 ? 'required' : '']) !!}
+                            {!! Form::input('hidden',$value['name'], isset($data) ? $data['select_category'] : '',['id'=>'select'])!!} 
+                        </div>
                         @break
                         @case('hidden')
                             {!! Form::input('hidden', $value['name'], $value['value']) !!}

@@ -69,7 +69,7 @@ class CocoNavController extends Controller
     public function index()
     {   
         //isset()判斷有無該變數，empty()判斷該值是否為空值
-        $page_limit = 20;
+        $page_limit = 2;
         $header = isset($_GET['parent_id'])?'次導覽列頁設定':'主導覽列頁設定';
         $field = array('導覽列名稱','網址','分類層級','狀態','最後更新時間');
 
