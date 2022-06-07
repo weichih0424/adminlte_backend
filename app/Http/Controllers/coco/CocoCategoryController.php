@@ -11,6 +11,7 @@ use App\Services\AdminRolesService;
 class CocoCategoryController extends Controller
 {
     private $role_name = 'coco_category';
+    private $table = 'coco_category';
     private $admin_roles;
 
     public $field = [
@@ -53,7 +54,7 @@ class CocoCategoryController extends Controller
      */
     public function index()
     {
-        $page_limit = 2;
+        $page_limit = 5;
         $header = '分類設定';
         $field = array('分類名稱','url','狀態');
         $datas = CocoCategoryModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);
@@ -156,5 +157,15 @@ class CocoCategoryController extends Controller
     {
         CocoCategoryModel::destroy($id);
         return redirect()->route('coco_category.index')->with('success', '資料刪除成功');
+    }
+    
+    public function reorder(){
+        $header = "排序";
+        $action = 'shared/save_reorder';
+        $method = 'POST';
+        $table = $this->table;
+        $datas = CocoCategoryModel::where('status',1)->orderBy('sort','ASC')->orderBy('id','DESC')->get();
+        
+        return view('coco.coco_category.reorder', compact('header', 'datas','table','action','method'));
     }
 }

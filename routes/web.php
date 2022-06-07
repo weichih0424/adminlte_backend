@@ -9,6 +9,7 @@ use App\Http\Controllers\coco\CocoArticleController;
 use App\Http\Controllers\shared\UploadFileController;
 use App\Http\Controllers\coco\CocoNavController;
 use App\Http\Controllers\coco\CocoCategoryController;
+use App\Http\Controllers\shared\ReorderController;
 use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
@@ -51,9 +52,18 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //咕咕雞商場
     Route::prefix('coco')->group(function () {
+        //文章管理
         Route::resource('/coco_article', CocoArticleController::class);
+        //導覽列管理
         Route::resource('/coco_nav', CocoNavController::class);
+        Route::prefix('coco_nav_sort')->group(function () {
+            Route::get('/reorder', [CocoNavController::class, 'reorder']);
+        });
+        //分類管理
         Route::resource('/coco_category', CocoCategoryController::class);
+        Route::prefix('coco_category_sort')->group(function () {
+            Route::get('/reorder', [CocoCategoryController::class, 'reorder']);
+        });
     });
 });
 
@@ -69,5 +79,6 @@ Route::prefix('shared')->middleware('auth')->group(function () {
         Route::post('/delete_file', [UploadFileController::class,'delete_file']);
     });
     // //共用儲存排序
-    // Route::post('/save_reorder', [ReorderController::class,'save_reorder']);
+    Route::post('/save_reorder', [ReorderController::class,'save_reorder']);
+    Route::post('/save_reorder_nav', [ReorderController::class,'save_reorder_nav']);
 });

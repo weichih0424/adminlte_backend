@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "bootstrap-fileinput": "^5.2.7"
+        "bootstrap-fileinput": "^5.2.7",
+        "sortablejs": "^1.15.0"
     }
 }

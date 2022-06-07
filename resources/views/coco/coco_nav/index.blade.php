@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', '文章管理')
+@section('title', '導覽列管理')
 
 @section('content_header')
     <h1>{{$header}}</h1>
@@ -10,16 +10,25 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
+            @can('coco_nav-create')
             <div class="float-left mr-3">
-                @can('coco_nav-create')
-                    @if (isset($_GET['parent_id']))
+                @if (isset($_GET['parent_id']))
                     <a href="{{ route('coco_nav.create',['parent_id' => $_GET['parent_id']]) }}">
                         <button type="button" class="btn btn-block btn-success btn-flat float-right px-4">新增</button></a>
                     @else
                     <a href="{{ route('coco_nav.create') }}">
                         <button type="button" class="btn btn-block btn-success btn-flat float-right px-4">新增</button></a>
-                    @endif
-                @endcan
+                @endif
+            </div>
+            @endcan
+            <div class="float-left mr-3">
+                @if (isset($_GET['parent_id']))
+                    <a href="{{ url('admin/coco/coco_nav_sort/reorder?parent_id='.$_GET['parent_id']) }}">
+                        <button type="button" class="btn btn-block btn-secondary btn-flat float-right px-4">排序</button></a>
+                @else
+                    <a href="{{ url('admin/coco/coco_nav_sort/reorder') }}">
+                        <button type="button" class="btn btn-block btn-secondary btn-flat float-right px-4">排序</button></a>
+                @endif
             </div>
             @if(isset($_GET['parent_id']))
                 <div class="float-left mr-3">
@@ -46,34 +55,34 @@
                 </thead>
                 <tbody>
                     @foreach ($datas as $key => $data)
-                            <tr>
-                                <td style="width:5%;" class="align-middle">{{ $data->id }}</td>
-                                <td style="width:15%;" class="align-middle">{{ $data->name }}</td>
-                                <td style="width:15%;" class="align-middle">
-                                    {{ str_limit($data->url,40,'...') }}
-                                    {!! ($data->position == 1)?
-                                    Form::open(['method' => 'GET', 'route' => ['coco_nav.index']]).
-                                    '<input name="parent_id" type="hidden" value="'.$data->id.'">'.
-                                    Form::submit('編輯次分類', ['class' => 'btn btn-outline-info']):"";
-                                    !!}
+                        <tr>
+                            <td style="width:5%;" class="align-middle">{{ $data->id }}</td>
+                            <td style="width:15%;" class="align-middle">{{ $data->name }}</td>
+                            <td style="width:15%;" class="align-middle">
+                                {{ str_limit($data->url,40,'...') }}
+                                {!! ($data->position == 1)?
+                                Form::open(['method' => 'GET', 'route' => ['coco_nav.index']]).
+                                '<input name="parent_id" type="hidden" value="'.$data->id.'">'.
+                                Form::submit('編輯次分類', ['class' => 'btn btn-outline-info']):"";
+                                !!}
+                                {!! Form::close() !!}
+                            </td>
+                            <td style="width:20%;" class="align-middle">{{ ($data->position!==2)?'第一層':'第二層' }}</td>
+                            <td style="width:10%;" class="status_color align-middle">{{ ($data->status==1)?'上架':'下架' }}</td>
+                            <td style="width:20%;" class="align-middle">{{ $data->updated_at }}</td>
+                            <td style="width:15%;" class="align-middle">
+                                @can('coco_nav-edit')
+                                    <a class="btn btn-primary btn-flat mr-4"
+                                        href="{{ route('coco_nav.edit', $data->id) }}">編輯</a>
+                                @endcan
+                                @can('coco_nav-delete')
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['coco_nav.destroy', $data->id], 'style' => 'display:inline', 'class' => 'deleteItem']) !!}
+                                    {!! Form::button('刪除', ['class' => 'delete btn btn-danger btn-flat']) !!}
                                     {!! Form::close() !!}
-                                </td>
-                                <td style="width:20%;" class="align-middle">{{ ($data->position!==2)?'第一層':'第二層' }}</td>
-                                <td style="width:10%;" class="status_color align-middle">{{ ($data->status==1)?'上架':'下架' }}</td>
-                                <td style="width:20%;" class="align-middle">{{ $data->updated_at }}</td>
-                                <td style="width:15%;" class="align-middle">
-                                    @can('coco_nav-edit')
-                                        <a class="btn btn-primary btn-flat mr-4"
-                                            href="{{ route('coco_nav.edit', $data->id) }}">編輯</a>
-                                    @endcan
-                                    @can('coco_nav-delete')
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['coco_nav.destroy', $data->id], 'style' => 'display:inline', 'class' => 'deleteItem']) !!}
-                                        {!! Form::button('刪除', ['class' => 'delete btn btn-danger btn-flat']) !!}
-                                        {!! Form::close() !!}
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach
+                                @endcan
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

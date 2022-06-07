@@ -10,11 +10,15 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
+            @can('coco_category-create')
             <div class="float-left mr-3">
-                @can('coco_category-create')
                 <a href="{{ route('coco_category.create') }}">
                     <button type="button" class="btn btn-block btn-success btn-flat float-right px-4">新增</button></a>
-                @endcan
+            </div>
+            @endcan
+            <div class="float-left mr-3">
+                <a href="{{ url('admin/coco/coco_category_sort/reorder') }}">
+                    <button type="button" class="btn btn-block btn-secondary btn-flat float-right px-4">排序</button></a>
             </div>
         </div>
         @if ($message = Session::get('success'))

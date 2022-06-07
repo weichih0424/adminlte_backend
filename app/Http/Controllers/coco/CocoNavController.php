@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\CocoNavModel;
 use App\Services\AdminRolesService;
 use App\Http\Requests\CocoNavVaildate;
+use Illuminate\Support\Facades\DB;
 
 class CocoNavController extends Controller
 {
     private $role_name = 'coco_nav';
+    private $table = 'coco_nav';
     private $admin_roles;
 
     public $field = [
@@ -69,7 +71,7 @@ class CocoNavController extends Controller
     public function index()
     {   
         //isset()判斷有無該變數，empty()判斷該值是否為空值
-        $page_limit = 2;
+        $page_limit = 5;
         $header = isset($_GET['parent_id'])?'次導覽列頁設定':'主導覽列頁設定';
         $field = array('導覽列名稱','網址','分類層級','狀態','最後更新時間');
 
@@ -77,7 +79,7 @@ class CocoNavController extends Controller
             // $datas = CocoCategoryModel::where('parent_id',$_GET['parent_id'])->orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);
             $datas = CocoNavModel::where('parent_id',$_GET['parent_id'])->where('position',2)->orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit)->appends(['parent_id'=>$_GET['parent_id']]);
         }else{
-            $datas = CocoNavModel::where('position', '<', 2)->orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);
+            $datas = CocoNavModel::where('position', '<>', 2)->orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);
         }
 
         return view('coco.coco_nav.index', compact('header', 'datas', 'field'));
@@ -209,5 +211,20 @@ class CocoNavController extends Controller
         }else{
             return redirect()->route('coco_nav.index',['parent_id'=>$CocoCategoryModel->parent_id])->with('success', '資料刪除成功');
         }
+    }
+
+    public function reorder(){
+        $header = isset($_GET['parent_id'])?'重新排序-次導覽列頁設定':'重新排序-主導覽列頁設定';
+        $action = 'shared/save_reorder_nav';
+        $method = 'POST';
+        $table = $this->table;
+        if(isset($_GET['parent_id']) && !empty($_GET['parent_id'])){
+            $datas = CocoNavModel::where('parent_id',$_GET['parent_id'])->where('position',2)->where('status',1)->orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->get();
+        }else{
+            $datas = CocoNavModel::where('position', '<>', 2)->where('status',1)->orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->get();
+        }
+        $parent_id = isset($_GET['parent_id'])?$_GET['parent_id']:'';
+
+        return view('coco.coco_nav.reorder', compact('header','action','method','datas','table','parent_id'));
     }
 }
