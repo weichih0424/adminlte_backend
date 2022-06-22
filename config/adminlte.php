@@ -320,6 +320,12 @@ return [
                     'url'  => 'admin/coco/coco_category',
                     'icon' => 'fas fa-users-cog',
                 ],
+                [
+                    'text' => 'Footer管理',
+                    'role_name' => 'coco_footer',
+                    'url'  => 'admin/coco/coco_footer',
+                    'icon' => 'fas fa-users-cog',
+                ],
             ],
         ],
         // ['header' => 'labels'],

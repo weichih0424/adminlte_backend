@@ -9,6 +9,7 @@ use App\Http\Controllers\coco\CocoArticleController;
 use App\Http\Controllers\shared\UploadFileController;
 use App\Http\Controllers\coco\CocoNavController;
 use App\Http\Controllers\coco\CocoCategoryController;
+use App\Http\Controllers\coco\CocoFooterController;
 use App\Http\Controllers\shared\ReorderController;
 use App\Http\Controllers\TestController;
 /*
@@ -63,6 +64,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::resource('/coco_category', CocoCategoryController::class);
         Route::prefix('coco_category_sort')->group(function () {
             Route::get('/reorder', [CocoCategoryController::class, 'reorder']);
+        });
+        //footer管理
+        Route::resource('/coco_footer', CocoFooterController::class);
+        Route::prefix('coco_footer_sort')->group(function () {
+            Route::get('/reorder', [CocoFooterController::class, 'reorder']);
         });
     });
 });
