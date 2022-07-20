@@ -14,6 +14,8 @@ class CocoCategoryModel extends Model
     protected $fillable = [
         'name',
         'url',
+        'category_show',
+        'main_show',
         'status',
     ];
 }

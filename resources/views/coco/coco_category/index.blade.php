@@ -39,24 +39,26 @@
                 </thead>
                 <tbody>
                     @foreach ($datas as $key => $data)
-                            <tr>
-                                <td style="width:5%;" class="align-middle">{{ $data->id }}</td>
-                                <td style="width:15%;" class="align-middle">{{ $data->name }}</td>
-                                <td style="width:15%;" class="align-middle">{{ $data->url }}</td>
-                                <td style="width:15%;" class="status_color align-middle">{{ ($data->status==1)?'上架':'下架' }}</td>
-                                <td style="width:15%;" class="align-middle">
-                                    @can('coco_category-edit')
-                                        <a class="btn btn-primary btn-flat mr-4"
-                                            href="{{ route('coco_category.edit', $data->id) }}">編輯</a>
-                                    @endcan
-                                    @can('coco_category-delete')
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['coco_category.destroy', $data->id], 'style' => 'display:inline', 'class' => 'deleteItem']) !!}
-                                        {!! Form::button('刪除', ['class' => 'delete btn btn-danger btn-flat']) !!}
-                                        {!! Form::close() !!}
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td style="width:5%;" class="align-middle">{{ $data->id }}</td>
+                            <td style="width:15%;" class="align-middle">{{ $data->name }}</td>
+                            <td style="width:15%;" class="align-middle">{{ $data->url }}</td>
+                            <td style="width:15%;" class="align-middle">{{ ($data->category_show==1)?'開啟':'關閉' }}</td>
+                            <td style="width:15%;" class="align-middle">{{ ($data->main_show==1)?'開啟':'關閉' }}</td>
+                            <td style="width:15%;" class="status_color align-middle">{{ ($data->status==1)?'上架':'下架' }}</td>
+                            <td style="width:15%;" class="align-middle">
+                                @can('coco_category-edit')
+                                    <a class="btn btn-primary btn-flat mr-4"
+                                        href="{{ route('coco_category.edit', $data->id) }}">編輯</a>
+                                @endcan
+                                @can('coco_category-delete')
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['coco_category.destroy', $data->id], 'style' => 'display:inline', 'class' => 'deleteItem']) !!}
+                                    {!! Form::button('刪除', ['class' => 'delete btn btn-danger btn-flat']) !!}
+                                    {!! Form::close() !!}
+                                @endcan
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

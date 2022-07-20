@@ -114,7 +114,8 @@ class CocoArticleController extends Controller
     // 搜尋資料庫的coco_category資料表，加入下拉式選單
     public function select_category()
     {
-        $CocoCategorys = CocoCategoryModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->where('status','=',1)->get();
+        $CocoCategorys = CocoCategoryModel::orderBy('id','ASC')->where('status','=',1)->get();
+        // dd($CocoCategorys);
         foreach ($CocoCategorys as $key => $v) {
             $this->field['select_category']['option'][$key+1]=$v->name;
         }

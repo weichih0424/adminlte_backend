@@ -461,6 +461,16 @@ return [
                 ],
             ],
         ],
+        // 'status_color_change' =>[
+        //     'active' => true,
+        //     'files' => [
+        //         [
+        //             'type' => 'js',
+        //             'asset' => true,
+        //             'location' => '/js/status_color_change.js',
+        //         ],
+        //     ],
+        // ],
     ],
 
     /*

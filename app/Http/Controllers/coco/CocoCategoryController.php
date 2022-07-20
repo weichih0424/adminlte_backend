@@ -30,6 +30,24 @@ class CocoCategoryController extends Controller
             'required' => TRUE
         ],
         [
+            'title' => '分類列狀態',
+            'type' => 'select',
+            'name' => 'category_show',
+            'option' => [
+                0 => '關閉',
+                1 => '開啟'
+            ],
+        ],
+        [
+            'title' => '首頁分類狀態',
+            'type' => 'select',
+            'name' => 'main_show',
+            'option' => [
+                0 => '關閉',
+                1 => '開啟'
+            ],
+        ],
+        [
             'title' => '狀態',
             'type' => 'select',
             'name' => 'status',
@@ -56,9 +74,9 @@ class CocoCategoryController extends Controller
     {
         $page_limit = 5;
         $header = '分類設定';
-        $field = array('分類名稱','url','狀態');
+        $field = array('分類名稱','url','分類列狀態','首頁分類狀態','狀態');
         $datas = CocoCategoryModel::orderByRaw('ISNULL(`sort`),`sort` ASC')->orderBy('id','DESC')->paginate($page_limit);
-        
+
         return view('coco.coco_category.index', compact('header', 'datas', 'field'));
     }
 
@@ -115,7 +133,7 @@ class CocoCategoryController extends Controller
      */
     public function edit($id)
     {
-        $header = '修改文章';
+        $header = '修改分類';
         $method = 'PATCH';
         $route = ['coco_category.update',$id];
         $field = $this->field;

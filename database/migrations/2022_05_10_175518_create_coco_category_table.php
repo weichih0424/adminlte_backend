@@ -17,6 +17,8 @@ class CreateCocoCategoryTable extends Migration
             $table->id();
             $table->string('name',150)->comment('分類名稱');
             $table->string('url',250)->comment('分類路徑');
+            $table->boolean('category_show')->comment('分類列呈現')->default(0);
+            $table->boolean('main_show')->comment('首頁呈現')->default(0);
             $table->integer('sort')->comment('排序')->default(0);
             $table->boolean('status')->default('0')->comment('狀態');
             $table->timestamps();
